@@ -19,6 +19,8 @@ option(ENABLE_WARNINGS_AS_ERRORS "Enable to treat warnings as errors" ON)
 
 option(ENABLE_LTO "Enable to add Link Time Optimization." ON)
 
+option(BUILD_STATIC_LIBRARY "Enable to build static library" ON)
+
 
 set(LIBRARY_NAME "Lythium")
 set(UNIT_TEST_NAME "Unit_Tests")
@@ -34,6 +36,10 @@ if(ENABLE_LTO)
     include(LTO)
 endif()
 
+
+if(CMAKE_CXX_COMPILER_ID STREQUAL "MSVC")
+    set(ENABLE_WARNINGS_AS_ERRORS OFF)
+endif()
 
 add_subdirectory(configured)
 add_subdirectory(src)

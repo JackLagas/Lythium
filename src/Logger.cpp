@@ -20,7 +20,6 @@ namespace Lythium{
 
     void Logger::Init(std::string logFilePath, LOG_LEVEL _log_level){
 
-        std::cout << "Test" << std::endl;
         
         logFile = logFilePath;
         std::filesystem::path filePath{logFile + "/latest.log"};
