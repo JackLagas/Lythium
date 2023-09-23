@@ -9,10 +9,10 @@ set( LIBRARY_INCLUDES
     "${CMAKE_BINARY_DIR}/configured_files/include"
 )
 
-if(BUILD_STATIC_LIBRARY)
-    add_library(${LIBRARY_NAME} STATIC ${LIBRARY_SOURCES} ${LIBRARY_HEADERS})
-else()
+if(BUILD_SHARED_LIBS)
     add_library(${LIBRARY_NAME} SHARED ${LIBRARY_SOURCES} ${LIBRARY_HEADERS})
+else()
+    add_library(${LIBRARY_NAME} STATIC ${LIBRARY_SOURCES} ${LIBRARY_HEADERS})
 endif()
 target_include_directories(${LIBRARY_NAME} PUBLIC ${LIBRARY_INCLUDES})
 

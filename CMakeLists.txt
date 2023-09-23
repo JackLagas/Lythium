@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.22)
 
-project(Lythium VERSION 1.0.1 LANGUAGES C CXX)
+project(Lythium VERSION 1.0.2 LANGUAGES C CXX)
 
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
@@ -19,7 +19,7 @@ option(ENABLE_WARNINGS_AS_ERRORS "Enable to treat warnings as errors" ON)
 
 option(ENABLE_LTO "Enable to add Link Time Optimization." ON)
 
-option(BUILD_STATIC_LIBRARY "Enable to build static library" ON)
+set(BUILD_SHARED_LIBS ON)
 
 
 set(LIBRARY_NAME "Lythium")
