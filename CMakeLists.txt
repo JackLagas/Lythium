@@ -8,11 +8,12 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 
+set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/lib)
+
 option(COMPILE_EXECUTABLE "Whether to compile an executable" ON)
 
 option(ENABLE_WARNINGS "Enable warnings for target" ON)
 option(ENABLE_WARNINGS_AS_ERRORS "Enable to treat warnings as errors" ON)
-
 
 option(ENABLE_LTO "Enable to add Link Time Optimization." ON)
 
