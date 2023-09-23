@@ -48,6 +48,8 @@ namespace Lythium{
         Logger(std::string friendlyName);
         static void Init(std::string logFilePath, LOG_LEVEL _log_level);
 
+
+    #ifndef NDEBUG
         template <typename... Args>
         void Info(const std::string_view message, Args&&... args){
             Log(LOG_LEVEL::INFO, message, args...);
@@ -56,6 +58,16 @@ namespace Lythium{
         void Trace(const std::string_view message, Args&&... args){
             Log(LOG_LEVEL::TRACE, message, args...);
         }
+    #else
+
+        template <typename... Args>
+        void Info(const std::string_view message, Args&&... args){
+        }
+        template <typename... Args>
+        void Trace(const std::string_view message, Args&&... args){
+        }
+
+    #endif
         template <typename... Args>
         void Debug(const std::string_view message, Args&&... args){
             Log(LOG_LEVEL::DEBUG, message, args...);
