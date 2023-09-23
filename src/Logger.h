@@ -28,7 +28,7 @@ namespace Lythium{
         std::string logName;
 
         template <typename... Args>
-        void Log(LOG_LEVEL level, const std::string_view message, Args&&... args){
+        void LogWithLevels(LOG_LEVEL level, const std::string_view message, Args&&... args){
             if(level >= log_level){
                 std::string finalMessage = std::format("[{}] {}: ", this->logName, log_types[level]);
                 finalMessage += std::vformat(message, std::make_format_args(args...));
@@ -49,40 +49,55 @@ namespace Lythium{
         static void Init(std::string logFilePath, LOG_LEVEL _log_level);
 
 
+        template <typename... Args>
+        void Log(const std::string_view message, Args&&... args){
+            std::string finalMessage = std::format("[{}] ", this->logName);
+            finalMessage += std::vformat(message, std::make_format_args(args...));
+
+            std::cout << finalMessage << std::endl;
+
+            std::ofstream file;
+            file.open((logFile + "latest.log").c_str(), std::ios_base::app);
+
+            file << finalMessage << "\n";
+            file.close();
+        }
+
+
     #ifndef NDEBUG
         template <typename... Args>
         void Info(const std::string_view message, Args&&... args){
-            Log(LOG_LEVEL::INFO, message, args...);
+            LogWithLevels(LOG_LEVEL::INFO, message, args...);
         }
         template <typename... Args>
         void Trace(const std::string_view message, Args&&... args){
-            Log(LOG_LEVEL::TRACE, message, args...);
+            LogWithLevels(LOG_LEVEL::TRACE, message, args...);
         }
     #else
 
         template <typename... Args>
-        void Info(const std::string_view message, Args&&... args){
+        void LogWithLevels(const std::string_view message, Args&&... args){
         }
         template <typename... Args>
-        void Trace(const std::string_view message, Args&&... args){
+        void LogWithLevels(const std::string_view message, Args&&... args){
         }
 
     #endif
         template <typename... Args>
         void Debug(const std::string_view message, Args&&... args){
-            Log(LOG_LEVEL::DEBUG, message, args...);
+            LogWithLevels(LOG_LEVEL::DEBUG, message, args...);
         }
         template <typename... Args>
         void Warn(const std::string_view message, Args&&... args){
-            Log(LOG_LEVEL::WARN, message, args...);
+            LogWithLevels(LOG_LEVEL::WARN, message, args...);
         }
         template <typename... Args>
         void Error(const std::string_view message, Args&&... args){
-            Log(LOG_LEVEL::ERROR, message, args...);
+            LogWithLevels(LOG_LEVEL::ERROR, message, args...);
         }
         template <typename... Args>
         void Fatal(const std::string_view message, Args&&... args){
-            Log(LOG_LEVEL::FATAL, message, args...);
+            LogWithLevels(LOG_LEVEL::FATAL, message, args...);
         }
        
 
