@@ -12,7 +12,7 @@ set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/bin)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/bin)
 set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/lib)
 
-option(COMPILE_EXECUTABLE "Whether to compile an executable" ON)
+option(COMPILE_EXECUTABLE "Whether to compile an executable" OFF)
 
 option(ENABLE_WARNINGS "Enable warnings for target" ON)
 option(ENABLE_WARNINGS_AS_ERRORS "Enable to treat warnings as errors" ON)
@@ -23,7 +23,6 @@ set(BUILD_SHARED_LIBS ON)
 
 
 set(LIBRARY_NAME "Lythium")
-set(UNIT_TEST_NAME "Unit_Tests")
 set(EXECUTABLE_NAME "TestApp")
 
 set(CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/cmake/)
